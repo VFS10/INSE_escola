@@ -16,12 +16,18 @@ Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
 
 View(Dados_INSE)
 
-summary(Dados_INSE)
-
 Dados_INSE <- Dados_INSE %>% dplyr::select(2,4,5)
-
 
 head(Dados_INSE)
 
+#Sumarissão do Nivel Socio economico
 
+class(Dados_INSE)
+
+nivel_soeco <- Dados_INSE %>% dplyr::select(3)
+View(nivel_soeco)
+
+summary(nivel_soeco)
+
+as.numeric(nivel_soeco)
 

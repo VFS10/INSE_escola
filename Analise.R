@@ -9,4 +9,7 @@ library(readr)
 library (dplyr)
 library(forcats)
 
+setwd("~/Github/INSE_escola")
 
+
+INSE <- read.csv(INSE_2019_ESCOLAS.csv)

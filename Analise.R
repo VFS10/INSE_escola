@@ -8,6 +8,7 @@
 #install.packages("tidyverse") 
 #install.packages("ggplot2")
 #install.packages("esquisse")
+#install.packages("sqldf")
 
 
 # Carregando Pacotes
@@ -17,7 +18,13 @@ library (dplyr)
 library(forcats)
 library(tidyverse)
 library(esquisse)
+library(ggplot2)
+library(sqldf)
 
+
+#Removendo notação Ciêntifica dos graficos 
+
+options(scipen = 999)
 
 #setando pasta padrao do projeto 
 
@@ -49,9 +56,46 @@ View(Dados_INSE$COD_ESC)
 Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
 Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
 Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
-Dados_INSE$MUN <- as.character(Dados_INSE$MUN)
+Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
 Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <- as.numeric(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+
+
+#microdados_Historia = microdados_enade_filtrados %>% filter(CO_GRUPO == 2402)
+
+
+#convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
+Dados_INSE$MUN <- row.names(Dados_INSE$MUN)                                           
+
+head(Dados_INSE)                                  
+
+sqldf("
+  select MUN
+    from Dados_INSE
+      where  MUN  LIKE   `D%`
+      ")
+
+
+Dados_INSE$MUN = 
+
+"
+
+SELECT MUN FROM Dados_INSE WHERE MUN = `DIADEMA` 
+
+"
+
+Dados_INSE$MUN
+
+
+head(Dados_INSE$MUN)
+
+sqldf(Dados_INSE$MUN)
+
+#` OR MUN = `SANTO ANDRE` OR MUN = `SAO BERNARDO DO CAMPO` OR MUN = `SAO CAETANO DO SUL` 
+
+
+                                         
+
 
 #Validando clase
 View(Dados_INSE$COD_ESC)
@@ -73,9 +117,8 @@ mean(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
 plot(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
-esquisser(Dados_INSE)
+#esquisser(Dados_INSE)
 
-library(ggplot2)
 
 ggplot(Dados_INSE) +
  aes(x = NIVEL.SOCIOECONOMICO.DOS.ALUNOS, y = COD_ESC) +

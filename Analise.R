@@ -10,7 +10,6 @@
 #install.packages("esquisse")
 #install.packages("sqldf")
 
-
 # Carregando Pacotes
 
 library(readr)
@@ -20,7 +19,6 @@ library(tidyverse)
 library(esquisse)
 library(ggplot2)
 library(sqldf)
-
 
 #Removendo notação Ciêntifica dos graficos 
 
@@ -50,55 +48,59 @@ head(Dados_INSE)
 
 View(Dados_INSE$COD_ESC)
 
-
 #Convertendo dados
 
-Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
-Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
-Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
-Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
-Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <- as.numeric(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+#Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
+# Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
+# Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
+# Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
+# Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+# Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <- as.numeric(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
 
 #microdados_Historia = microdados_enade_filtrados %>% filter(CO_GRUPO == 2402)
 
 
 #convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
-Dados_INSE$MUN <- row.names(Dados_INSE$MUN)                                           
+
+#Dados_INSE$MUN <- rownames(Dados_INSE)                                           
+
+#head(mtcars)
 
 head(Dados_INSE)                                  
 
-sqldf("
-  select MUN
-    from Dados_INSE
-      where  MUN  LIKE   `D%`
-      ")
+#Dadossql <- as.data.frame(Dados_INSE)
+#str(Dadossql)
+#view(Dadossql)
+
+#sqldf("
+
+#SELECT * FROM Dadossql WHERE MUN = `DIADEMA`
+      
+#      ")
 
 
-Dados_INSE$MUN = 
+#sqldf("
 
-"
-
-SELECT MUN FROM Dados_INSE WHERE MUN = `DIADEMA` 
-
-"
-
-Dados_INSE$MUN
+#SELECT * FROM Dados_INSE WHERE MUN = `DIADEMA`
+      
+#      ")
 
 
-head(Dados_INSE$MUN)
 
-sqldf(Dados_INSE$MUN)
+
+
+
+
+#Quero apenas as escolar do municipio de São bernaro do campo , Diadema , Santo andre , São Caetrano do sul de 
+
+Dados_INSE <-  filter(Dados_INSE,MUN=="DIADEMA" | MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
+
+View(Dados_INSE)
+
+
 
 #` OR MUN = `SANTO ANDRE` OR MUN = `SAO BERNARDO DO CAMPO` OR MUN = `SAO CAETANO DO SUL` 
-
-
-                                         
-
-
-#Validando clase
-View(Dados_INSE$COD_ESC)
 
 sapply(Dados_INSE,class)
 
@@ -109,13 +111,13 @@ head(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
 class(Dados_INSE)
 
-#descobrindo mediana
-median(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-
-#descobrindo media
-mean(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-
-plot(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+# #descobrindo mediana
+# median(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+# 
+# #descobrindo media
+# mean(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+# 
+# plot(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
 #esquisser(Dados_INSE)
 

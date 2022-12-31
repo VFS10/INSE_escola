@@ -32,6 +32,11 @@ setwd("~/Github/INSE_escola")
 
 Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
 
+names(Dados_INSE)
+
+Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "nivelse")
+
+
 #Visualizando dados 
 View(Dados_INSE)
 
@@ -54,11 +59,8 @@ View(Dados_INSE$COD_ESC)
 # Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
 # Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
 # Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
-# Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+#Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 # Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <- as.numeric(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-
-
-#microdados_Historia = microdados_enade_filtrados %>% filter(CO_GRUPO == 2402)
 
 
 #convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
@@ -119,17 +121,45 @@ class(Dados_INSE)
 # 
 # plot(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
-#esquisser(Dados_INSE)
+esquisser(Dados_INSE)
 
+
+
+
+
+library(ggplot2)
 
 ggplot(Dados_INSE) +
- aes(x = NIVEL.SOCIOECONOMICO.DOS.ALUNOS, y = COD_ESC) +
- geom_point(shape = "circle", 
- size = 0.75, colour = "#228B22") +
- labs(x = "Nível, Socio Economico ", y = "Cod Escola", title = "Grafico Usando a biblioteca esquisse", 
- subtitle = "Escola por Municipio ") +
- theme_gray() +
- theme(plot.title = element_text(hjust = 0.5), 
- plot.subtitle = element_text(face = "bold", hjust = 0.5), axis.title.y = element_text(face = "italic"), 
- axis.title.x = element_text(face = "italic"))
+ aes(x = MUN) +
+ geom_bar(fill = "#112446") +
+ labs(x = "Municípios", y = "Número de Escolas", 
+ title = "Número de Escola por Município ABCD") +
+ theme_bw()
+library(ggplot2)
+
+# Dados_INSE <- as.data.frame(Dados_INSE)
+# 
+# 
+# agreg <- aggregate(. ~ Dados_INSE$MUN, fun = sum, Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+# 
+# s
+# 
+# class(Dados_INSE)
+# 
+# head(Dados_INSE)
+# 
+# Dados_INSE [,5]
+# 
+# sum(as.integer(Dados_INSE[,5]))
+# 
+# 
+# 
+# sqldf ("
+#        
+#        SELECT SUM (NIVELSE) FROM Dados_INSE
+#        WHERE MUN == DIADEMA
+#        
+#        ")
+
+
 

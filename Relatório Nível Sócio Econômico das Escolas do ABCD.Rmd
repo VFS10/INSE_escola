@@ -1,0 +1,102 @@
+---
+title: "Relatório Nível Sócio Econômico das Escolas do ABCD"
+author: "Vinicius Ferreira -  https://github.com/VFS10"
+date: "2023-01-04"
+output: html_document
+---
+
+```{r Instalando Pacotes , eval=FALSE, include=FALSE}
+
+#install.packages("forcast")
+#install.packages("readr")
+#install.packages("tidyverse") 
+#install.packages("ggplot2")
+#install.packages("esquisse")
+#install.packages("sqldf")
+#install.packages("ggplot2")
+```
+
+
+```{r Carregando Pacotes, eval=FALSE, include=FALSE}
+
+library(readr)
+library (dplyr)
+library(forcats)
+library(tidyverse)
+library(esquisse)
+library(ggplot2)
+library(sqldf)
+```
+
+
+
+```{r Removendo notação Ciêntifica dos graficos, eval=FALSE, include=FALSE}
+
+options(scipen = 999)
+
+```
+
+
+```{r Setando pasta padrao do projeto , eval=FALSE, include=FALSE}
+
+
+setwd("~/Github/INSE_escola")
+
+```
+
+
+```{r Lendo base de dados, eval=FALSE, include=FALSE}
+
+Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
+```
+
+
+```{r Renomeando Variavel, eval=FALSE, include=FALSE}
+
+Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "NIVEL.SOCIOECONOMICO.DOS.ALUNOS")
+
+```
+
+
+```{r Removendo Virgula e Convertendo Variável para númerica , eval=FALSE, include=FALSE}
+
+Dados_INSE$NIVELSE <-  gsub ("," , "",Dados_INSE$NIVELSE)
+
+Dados_INSE$NIVELSE  <- as.numeric(Dados_INSE$NIVELSE)
+
+```
+
+
+```{r Filtrando Municipios do ABCD, eval=FALSE, include=FALSE}
+
+Dados_INSE <-  filter(Dados_INSE,MUN=="DIADEMA" | MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
+
+```
+
+
+```{r Plotando Grafico n de escolas p municipio }
+
+print(" Grafico com a representação do Número de escolas do ABCD por Municipio")
+
+
+
+library(ggplot2)
+ggplot(Dados_INSE) +
+ aes(x = MUN) +
+ geom_bar(fill = "#112446") +
+ labs(x = "Municípios", y = "Número de Escolas", 
+ title = "Número de Escola por Município ABCD") +
+ theme_bw()
+
+
+```
+
+
+
+
+
+
+
+
+
+

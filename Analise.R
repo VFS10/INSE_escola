@@ -2,14 +2,13 @@
 
 # Instalando Pacotes 
 
-#install.packages("dplyr")
 #install.packages("forcast")
 #install.packages("readr")
 #install.packages("tidyverse") 
 #install.packages("ggplot2")
 #install.packages("esquisse")
 #install.packages("sqldf")
-#library(ggplot2)
+#install.packages("ggplot2")
 
 
 # Carregando Pacotes
@@ -34,8 +33,6 @@ setwd("~/Github/INSE_escola")
 
 Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
 
-names(Dados_INSE)
-
 Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "NIVEL.SOCIOECONOMICO.DOS.ALUNOS")
 
 
@@ -44,7 +41,6 @@ View(Dados_INSE)
 
 #Verificando class
 class(Dados_INSE)
-
 
 #Filtrando colunas 
 #Dados_INSE <- Dados_INSE %>% dplyr::select(2,4,5)

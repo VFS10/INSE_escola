@@ -9,6 +9,8 @@
 #install.packages("ggplot2")
 #install.packages("esquisse")
 #install.packages("sqldf")
+#library(ggplot2)
+
 
 # Carregando Pacotes
 
@@ -34,7 +36,7 @@ Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
 
 names(Dados_INSE)
 
-Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "nivelse")
+Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "NIVEL.SOCIOECONOMICO.DOS.ALUNOS")
 
 
 #Visualizando dados 
@@ -55,12 +57,16 @@ View(Dados_INSE$COD_ESC)
 
 #Convertendo dados
 
-#Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
+# Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
 # Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
 # Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
 # Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
-#Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <-  gsub ("," , "",Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-# Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS <- as.numeric(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
+
+# Removendo a vircula do nivel socio economico das escolas para facilitar nosso tratamentodos dados 
+Dados_INSE$NIVELSE <-  gsub ("," , "",Dados_INSE$NIVELSE)
+
+#Convertendo variavel para númerica 
+Dados_INSE$NIVELSE  <- as.numeric(Dados_INSE$NIVELSE)
 
 
 #convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
@@ -87,12 +93,6 @@ head(Dados_INSE)
 #SELECT * FROM Dados_INSE WHERE MUN = `DIADEMA`
       
 #      ")
-
-
-
-
-
-
 
 #Quero apenas as escolar do municipio de São bernaro do campo , Diadema , Santo andre , São Caetrano do sul de 
 
@@ -121,13 +121,14 @@ class(Dados_INSE)
 # 
 # plot(Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
 
-esquisser(Dados_INSE)
+#esquisser(Dados_INSE)
 
 
 
 
+print(" Grafico com a representação do Número de escolas do ABCD por Municipio")
 
-library(ggplot2)
+
 
 ggplot(Dados_INSE) +
  aes(x = MUN) +
@@ -137,29 +138,31 @@ ggplot(Dados_INSE) +
  theme_bw()
 library(ggplot2)
 
-# Dados_INSE <- as.data.frame(Dados_INSE)
+summary(Dados_INSE$NIVELSE)
+
+
+print("Nível Socio Ecônomico MINIMO das escolas do ABCD é 3,93")
+
+print("Nível socio ecônomico MAXIMO das escolas do ABCD é 6,51")
+
+print("MÉDIA do Nível socio ecônomico das escolas do ABCD é 5,22")
+
+
+
+
+
+
+
+# row.names(Dados_INSE)
 # 
-# 
-# agreg <- aggregate(. ~ Dados_INSE$MUN, fun = sum, Dados_INSE$NIVEL.SOCIOECONOMICO.DOS.ALUNOS)
-# 
-# s
-# 
-# class(Dados_INSE)
-# 
-# head(Dados_INSE)
-# 
-# Dados_INSE [,5]
-# 
-# sum(as.integer(Dados_INSE[,5]))
-# 
-# 
-# 
-# sqldf ("
+# sqldf ( "
 #        
-#        SELECT SUM (NIVELSE) FROM Dados_INSE
-#        WHERE MUN == DIADEMA
+#         SELECT SUM (NIVELSE) FROM Dados_INSE
+#         WHERE MUN == DIADEMA
 #        
-#        ")
-
-
-
+#         
+#         ")
+# 
+# view(Dados_INSE)
+# 
+# 

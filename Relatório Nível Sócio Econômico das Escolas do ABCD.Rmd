@@ -29,7 +29,6 @@ library(sqldf)
 ```
 
 
-
 ```{r Removendo notação Ciêntifica dos graficos, eval=FALSE, include=FALSE}
 
 options(scipen = 999)
@@ -74,19 +73,57 @@ Dados_INSE <-  filter(Dados_INSE,MUN=="DIADEMA" | MUN=="SAO BERNARDO DO CAMPO" |
 ```
 
 
-```{r Plotando Grafico n de escolas p municipio }
-
-print(" Grafico com a representação do Número de escolas do ABCD por Municipio")
 
 
+### **Oque é o Nível Socio Ecônomico das Escolas** ?
 
-library(ggplot2)
-ggplot(Dados_INSE) +
- aes(x = MUN) +
- geom_bar(fill = "#112446") +
- labs(x = "Municípios", y = "Número de Escolas", 
- title = "Número de Escola por Município ABCD") +
- theme_bw()
+O Nível socio econômico das escolas é um indicador elaborado pelo **INEP - (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira )** que categoriza as escolas de acordo com o nível socioeconômico dos alunos, determinado a partir do nível de escolaridade e rendimento da família.
+
+
+
+```{r Imagem INEP, echo=FALSE}
+
+knitr::include_graphics ("~/Github/INSE_escola/imagens/INEP.jpg")
+
+
+```
+
+
+### **Como o nível socioeconômico é calculado?**
+
+  O indicador de **Nível Socioeconômico da escola é construído a partir do nível de escolaridade e o rendimento da família dos alunos**. Essas informações são coletadas a partir das respostas dos estudantes aos questionários contextuais do **Saeb (Sistema de Avaliação da Educação Básica)**. As questões utilizadas abordam renda familiar, posse de bens e contratação de serviços de trabalhadores domésticos pela família, assim como o nível de escolaridade dos pais ou responsáveis.
+
+Para facilitar o entendimento do nível socioeconômico das escolas, o **Inep (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) classificou as escolas em 6 grupos a partir deste indicador. Na plataforma Foco, nomeamos esses grupos como: muito baixo, baixo, médio baixo, médio alto,alto e muito alto.** Assim, as escolas que estão no nível “muito baixo” tem mais alunos nível socioeconômico mais baixo. E as escolas que estão no nível “alto” tem mais alunos de níveis socioeconômicos mais altos. 
+
+Vale ressaltar que apenas as escolas que tiveram 10 ou mais alunos respondentes são classificadas em grupos socioeconômicos. E, para ter o nível individual calculado, os alunos devem ser estudantes concluintes regulares que responderam a mais de cinco questões.
+
+
+### **Análise** 
+Nesta Análise eu *Vinicius Ferrerira*, obtei por tratar apenas as escolas da regiãodo ABCD,pois é um região que tenho maior vivencia e também de maior interesse para min
+
+
+Abaixo podemos observar um **gráfico de barras laterias**, onde é apresentado o número de escolas
+por **municipio do grande ABCD**
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r Resumo estatistico, echo=FALSE}
+
+print("Nível Socio Ecônomico MINIMO das escolas do ABCD é 3,93")
+
+print("Nível socio ecônomico MAXIMO das escolas do ABCD é 6,51")
+
+print("MÉDIA do Nível socio ecônomico das escolas do ABCD é 5,22")
 
 
 ```

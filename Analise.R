@@ -160,5 +160,5 @@ print("MÉDIA do Nível socio ecônomico das escolas do ABCD é 5,22")
 #         ")
 # 
 # view(Dados_INSE)
-# 
+# testeok 
 # 

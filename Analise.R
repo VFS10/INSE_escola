@@ -4,6 +4,7 @@
 
 #install.packages("forcast")
 #install.packages("readr")
+install.packages("readxl")
 #install.packages("tidyverse") 
 #install.packages("ggplot2")
 #install.packages("esquisse")
@@ -14,6 +15,7 @@
 # Carregando Pacotes
 
 library(readr)
+library(readxl)
 library (dplyr)
 library(forcats)
 library(tidyverse)
@@ -27,11 +29,12 @@ options(scipen = 999)
 
 #setando pasta padrao do projeto 
 
-setwd("~/Github/INSE_escola")
+setwd("~/Documentos/GitHub/INSE_escola")
 
-#Lendo base de dados
+#Lendo base de dados e setando encond para utf8
 
-Dados_INSE <- read.csv("INSE_2019_ESCOLAS.csv",sep =";",encoding = "utf8")
+
+Dados_INSE <- read_Excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
 
 Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "NIVEL.SOCIOECONOMICO.DOS.ALUNOS")
 

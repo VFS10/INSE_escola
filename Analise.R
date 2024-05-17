@@ -88,7 +88,7 @@ View(Dados_INSE)
 #      ")
 
 #Quero apenas as escolar do estado de são paulo 
-Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
+#Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
 
 #Validando Filtro
 View(Dados_INSE)
@@ -96,19 +96,37 @@ View(Dados_INSE)
 esquisser(Dados_INSE)
 
 
-
-
-
-library(dplyr)
 library(ggplot2)
 
-Dados_INSE
- ggplot() +
- aes(x = NO_UF, y = MEDIA_INSE) +
- geom_col(fill = "#112446") +
- labs(x = "Estados", 
- y = "Media Por estado", title = "Média de INSE no Brasil") +
- theme_dark()
+ggplot(Dados_INSE) +
+ aes(x = SG_UF, y = MEDIA_INSE) +
+ geom_col(fill = "#4682B4") +
+ labs(x = "Estado Brasileiro", 
+ y = "Média INSE das Familias ", title = "INSE BRASIL 2021 ", subtitle = "@Vinifersan89") +
+ theme_minimal()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Dados_INSE
+#  ggplot() +
+#  aes(x = NO_UF, y = MEDIA_INSE) +
+#  geom_col(fill = "#112446") +
+#  labs(x = "Estados", 
+#  y = "Media Por estado", title = "Média de INSE no Brasil") +
+#  theme_dark()
 
 #` OR MUN = `SANTO ANDRE` OR MUN = `SAO BERNARDO DO CAMPO` OR MUN = `SAO CAETANO DO SUL` 
 

@@ -87,26 +87,38 @@ View(Dados_INSE)
       
 #      ")
 
-#Quero apenas as escolar do estado de são paulo 
-#Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
-
 #Validando Filtro
 View(Dados_INSE)
 
 esquisser(Dados_INSE)
 
 
-library(ggplot2)
-
+#Plotando Grafico INSE BRASIL 2021
 ggplot(Dados_INSE) +
  aes(x = SG_UF, y = MEDIA_INSE) +
  geom_col(fill = "#4682B4") +
  labs(x = "Estado Brasileiro", 
- y = "Média INSE das Familias ", title = "INSE BRASIL 2021 ", subtitle = "@Vinifersan89") +
+ y = "Média INSE das Familias ", title = "INSE dos Estados BRASILEIROS 2021", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10") +
  theme_minimal()
 
+#Plotando Grafico Número de alunos dos estado brasileiro
+ggplot(Dados_INSE) +
+  aes(x = SG_UF, y = QTD_ALUNOS_INSE) +
+  geom_col(fill = "#468210") +
+  labs(x = "Estado Brasileiro",
+  y = "Total de alunos por escola",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
 
 
+
+
+
+#Quero apenas as escolar do estado de são paulo 
+#Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
+
+
+#MG-31
+#Sp-35
 
 
 

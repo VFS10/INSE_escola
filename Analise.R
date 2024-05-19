@@ -110,8 +110,33 @@ ggplot(Dados_INSE) +
 theme_minimal()
 
 
+MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+
+class(MEDIA_SP)
+
+View(MEDIA_SP)
+
+MEDIA_SP = as.character(MEDIA_SP)
+
+MEDIA_SP = as.numeric(MEDIA_SP)
+
+summary(MEDIA_SP)
 
 
+
+MEDIA_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
+
+
+summary(MEDIA_MG)
+
+
+
+#MEDIA_SP = as.factor(MEDIA_SP)
+#MEDIA_SP <- mean(MEDIA_SP)
+
+head(MEDIA_SP)
+
+MEDIA_SP
 
 #Quero apenas as escolar do estado de são paulo 
 #Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )

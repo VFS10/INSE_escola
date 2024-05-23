@@ -1,0 +1,107 @@
+---
+title: "Analise Indice Nível SocioEconômico 2021"
+author: "Vinicius Ferreira Git-VFS10 Insta-Vinifersan89"
+date: "2024-05-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Analise de Indice Nível SocioEconômico 2021 
+
+Neste relatório iremos Analise o Nível SocioEconômico Brasileiro de 2021 (INSE) 
+
+
+O Indicador de Nível Socioeconômico (Inse) é uma medida utilizada para classificar as escolas públicas do Brasil. O Inse é calculado com base em dados do Censo Escolar, como a escolaridade dos pais, a posse de bens e serviços da família e o acesso à internet.
+
+O Inse é usado para contextualizar o desempenho das escolas nas avaliações e exames realizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep). Isso permite que o Inep compare o desempenho das escolas de diferentes níveis socioeconômicos e identifique as escolas que precisam de mais apoio.
+
+O Inse é uma ferramenta importante para a melhoria da educação no Brasil. Ele ajuda a identificar as escolas que precisam de mais apoio e permite que o Inep desenvolva políticas públicas para melhorar a educação de todos os alunos, independentemente de sua origem social.
+OS dados de INSe sãoprovidenciados pelo Sistema Nacional de Avaliação da Educação Básica (Saeb).
+
+O Sistema Nacional de Avaliação da Educação Básica (Saeb) é um sistema de avaliação externa em
+larga escala, composto por um conjunto de instrumentos, realizado periodicamente pelo Instituto Nacional
+de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep), desde os anos 1990, e tem por objetivos, no
+âmbito da educação básica: (I) produzir indicadores educacionais para o Brasil, suas regiões e unidades da
+Federação e, quando possível, para os municípios e as instituições escolares, tendo em vista a manutenção
+da comparabilidade dos dados, permitindo, assim, o incremento das séries históricas; (II) avaliar a qualidade, a
+equidade e a eficiência da educação praticada no País em seus diversos níveis governamentais; (III) subsidiar
+a elaboração, o monitoramento e o aprimoramento de políticas públicas em educação baseadas em evidências,
+com vistas ao desenvolvimento social e econômico do Brasil; (IV) desenvolver competência técnica e científica
+na área de avaliação educacional, ativando o intercâmbio entre instituições de ensino e pesquisa (Brasil.
+Inep, 2021b).
+Para cum
+
+
+
+```{r}
+library(readr)
+library(readxl)
+library (dplyr)
+library(forcats)
+library(tidyverse)
+library(esquisse)
+library(ggplot2)
+library(sqldf)
+```
+
+
+
+```{r}
+options(scipen = 999)
+
+```
+
+
+```{r}
+setwd("~/Documentos/GitHub/INSE_escola")
+```
+
+
+```{r cars}
+Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
+```
+
+
+```{r}
+head(Dados_INSE)
+```
+
+
+```{r}
+#Plotando Grafico INSE BRASIL 2021
+ggplot(Dados_INSE) +
+ aes(x = SG_UF, y = MEDIA_INSE) +
+ geom_col(fill = "#4682B4") +
+ labs(x = "Estado Brasileiro", 
+ y = "Média INSE das Familias ", title = "INSE dos Estados BRASILEIROS 2021", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10") +
+ theme_minimal()
+
+```
+
+
+
+```{r}
+
+#Plotando Grafico Número de alunos dos estado brasileiro
+ggplot(Dados_INSE) +
+  aes(x = SG_UF, y = QTD_ALUNOS_INSE) +
+  geom_col(fill = "#468210") +
+  labs(x = "Estado Brasileiro",
+  y = "Total de alunos por escola",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
+
+```
+
+
+```{r}
+
+#obtendo dataframe com media INSE do estado de Sp 
+MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+
+```
+
+
+

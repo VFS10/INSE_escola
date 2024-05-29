@@ -1,29 +1,32 @@
 ---
-title: "Analise Indice Nível SocioEconômico 2021"
+title: "Analise INSE 2021"
 author: "Vinicius Ferreira Git-VFS10 Insta-Vinifersan89"
 date: "2024-05-23"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Analise de Indice Nível SocioEconômico 2021 
+### Objetivo ! 
 
 Neste relatório iremos Analise o Nível SocioEconômico Brasileiro de 2021 (INSE) 
 
 
-O Indicador de Nível Socioeconômico (Inse) é uma medida utilizada para classificar as escolas públicas do Brasil. O Inse é calculado com base em dados do Censo Escolar, como a escolaridade dos pais, a posse de bens e serviços da família e o acesso à internet.
+### Oque é o INSE ?
 
-O Inse é usado para contextualizar o desempenho das escolas nas avaliações e exames realizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep). Isso permite que o Inep compare o desempenho das escolas de diferentes níveis socioeconômicos e identifique as escolas que precisam de mais apoio.
+**O Indicador de Nível Socioeconômico (Inse) é uma medida utilizada para classificar as escolas públicas do Brasil.** O Inse é calculado com base em dados do Censo Escolar, como a escolaridade dos pais, a posse de bens e serviços da família e o acesso à internet.
 
-O Inse é uma ferramenta importante para a melhoria da educação no Brasil. Ele ajuda a identificar as escolas que precisam de mais apoio e permite que o Inep desenvolva políticas públicas para melhorar a educação de todos os alunos, independentemente de sua origem social.
-OS dados de INSe sãoprovidenciados pelo Sistema Nacional de Avaliação da Educação Básica (Saeb).
+**O Inse é usado para contextualizar o desempenho das escolas nas avaliações e exames realizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep).** Isso permite que o Inep compare o desempenho das escolas de diferentes níveis socioeconômicos e identifique as escolas que precisam de mais apoio.
 
-O Sistema Nacional de Avaliação da Educação Básica (Saeb) é um sistema de avaliação externa em
+*O Inse é uma ferramenta importante para a melhoria da educação no Brasil.* Ele ajuda a identificar as escolas que precisam de mais apoio e permite que o INEP desenvolva políticas públicas para melhorar a educação de todos os alunos, independentemente de sua origem social.
+
+***OS dados de INSE são providenciados pelo Sistema Nacional de Avaliação da Educação Básica (Saeb).***
+
+**O Sistema Nacional de Avaliação da Educação Básica (SAEB) é um sistema de avaliação externa em
 larga escala, composto por um conjunto de instrumentos, realizado periodicamente pelo Instituto Nacional
-de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep), desde os anos 1990, e tem por objetivos, no
+de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP),** desde os anos 1990, e tem por objetivos, no
 âmbito da educação básica: (I) produzir indicadores educacionais para o Brasil, suas regiões e unidades da
 Federação e, quando possível, para os municípios e as instituições escolares, tendo em vista a manutenção
 da comparabilidade dos dados, permitindo, assim, o incremento das séries históricas; (II) avaliar a qualidade, a
@@ -36,41 +39,36 @@ Para cum
 
 
 
-```{r}
-library(readr)
+```{r lendo pacotes  echo:false}
+#library(readr)
 library(readxl)
-library (dplyr)
-library(forcats)
-library(tidyverse)
-library(esquisse)
+#library (dplyr)
+#library(forcats)
+#library(tidyverse)
+#library(esquisse)
 library(ggplot2)
 library(sqldf)
 ```
 
 
 
-```{r}
+```{r removendo notação cientifica echo:false}
 options(scipen = 999)
 
 ```
 
 
-```{r}
+```{r caminho da base echo:false}
 setwd("~/Documentos/GitHub/INSE_escola")
 ```
 
 
-```{r cars}
+```{r Lendo Base echo:false}
 Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
 ```
 
 
-```{r}
-head(Dados_INSE)
-```
-
-
-```{r}
+```{r plotando grafico por estado echo:false}
 #Plotando Grafico INSE BRASIL 2021
 ggplot(Dados_INSE) +
  aes(x = SG_UF, y = MEDIA_INSE) +
@@ -83,7 +81,7 @@ ggplot(Dados_INSE) +
 
 
 
-```{r}
+```{r plotando grafico de número de alunos}
 
 #Plotando Grafico Número de alunos dos estado brasileiro
 ggplot(Dados_INSE) +
@@ -96,7 +94,9 @@ theme_minimal()
 ```
 
 
-```{r}
+
+
+```{r retornando media de medias do estado de são paulo echo:false}
 
 #obtendo dataframe com media INSE do estado de Sp 
 MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")

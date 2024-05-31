@@ -35,9 +35,6 @@ a elaboração, o monitoramento e o aprimoramento de políticas públicas em edu
 com vistas ao desenvolvimento social e econômico do Brasil; (IV) desenvolver competência técnica e científica
 na área de avaliação educacional, ativando o intercâmbio entre instituições de ensino e pesquisa (Brasil.
 Inep, 2021b).
-Para cum
-
-
 
 ```{r lendo pacotes  echo:false}
 #library(readr)
@@ -67,6 +64,12 @@ setwd("~/Documentos/GitHub/INSE_escola")
 Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
 ```
 
+**Média de INSE das familias dos estados**
+
+Ao realizarmos a plotagem da média INSE das familias dos estados do Brasil em um gráfico de barras, identificamos que o estado com maior indice é Minas Gerais(MG) acompanhado de São Paulo(SP), e os estados com menor media de indice são Distrito Federal (DF) seguido de Roraima (RR)
+
+
+
 
 ```{r plotando grafico por estado echo:false}
 #Plotando Grafico INSE BRASIL 2021
@@ -79,6 +82,11 @@ ggplot(Dados_INSE) +
 
 ```
 
+**Total de alunos por estado**
+
+Plotando nosso grafico de barras, identificamos que o estado com maior número de alunos é o estado de Sào Paulo (SP) seguido de Minas Gerais (MG).
+
+Com base nos dados, conseguimos identificar que a maior parte das familias com filhos em escolas estão em São Paulo, também identificamos uma maior demanda de professores e necessidade de investimento em edução nesse estado,a principio apelas pelo número de crianças 
 
 
 ```{r plotando grafico de número de alunos}

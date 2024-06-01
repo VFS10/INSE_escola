@@ -69,8 +69,6 @@ Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = 
 Ao realizarmos a plotagem da média INSE das familias dos estados do Brasil em um gráfico de barras, identificamos que o estado com maior indice é Minas Gerais(MG) acompanhado de São Paulo(SP), e os estados com menor media de indice são Distrito Federal (DF) seguido de Roraima (RR)
 
 
-
-
 ```{r plotando grafico por estado echo:false}
 #Plotando Grafico INSE BRASIL 2021
 ggplot(Dados_INSE) +
@@ -104,14 +102,27 @@ ggplot(Dados_INSE) +
 ```
 
 
+```{r retornando media de medias do estado de são paulo echo:false}
+
+#obtendo dataframe com media INSE do estado de SP e MG
+R_estat_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+
+#obtendo dataframe com media INSE do estado de minas
+R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
+
+```
+
+**Resumo estatistico do estado de SP e MG**
+
+São Paulo 
+
+```{r}
+summary(R_estat_SP)
+```
+
+Minas Gerais
 
 
-<!-- ```{r retornando media de medias do estado de são paulo echo:false} -->
-
-<!-- #obtendo dataframe com media INSE do estado de Sp  -->
-<!-- MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35") -->
-
-<!-- ``` -->
-
-
-
+```{r}
+summary(R_estat_MG)
+```

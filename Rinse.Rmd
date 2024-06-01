@@ -91,25 +91,27 @@ Com base nos dados, conseguimos identificar que a maior parte das familias com f
 
 ```{r plotando grafico de número de alunos}
 
-#Plotando Grafico Número de alunos dos estado brasileiro
+#Plotando Grafico INSE BRASIL 2021
 ggplot(Dados_INSE) +
-  aes(x = SG_UF, y = QTD_ALUNOS_INSE) +
-  geom_col(fill = "#468210") +
-  labs(x = "Estado Brasileiro",
-  y = "Total de alunos por escola",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
-theme_minimal()
+ aes(x = SG_UF, y = QTD_ALUNOS_INSE) +
+ geom_col(fill = "#468210") +
+ labs(x = "Estado Brasileiro", 
+ y = "Total de alunos por escola ", title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10") +
+ theme_minimal()
+
+
 
 ```
 
 
 
 
-```{r retornando media de medias do estado de são paulo echo:false}
+<!-- ```{r retornando media de medias do estado de são paulo echo:false} -->
 
-#obtendo dataframe com media INSE do estado de Sp 
-MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+<!-- #obtendo dataframe com media INSE do estado de Sp  -->
+<!-- MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35") -->
 
-```
+<!-- ``` -->
 
 
 

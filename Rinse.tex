@@ -1,0 +1,179 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Analise INSE 2021},
+  pdfauthor={Vinicius Ferreira Git-VFS10 Insta-Vinifersan89},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Analise INSE 2021}
+\author{Vinicius Ferreira Git-VFS10 Insta-Vinifersan89}
+\date{2024-05-23}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Objetivo !}\label{objetivo}
+
+Neste relatório iremos Analise o Nível SocioEconômico Brasileiro de 2021
+(INSE)
+
+\subsubsection{Oque é o INSE ?}\label{oque-uxe9-o-inse}
+
+\textbf{O Indicador de Nível Socioeconômico (Inse) é uma medida
+utilizada para classificar as escolas públicas do Brasil.} O Inse é
+calculado com base em dados do Censo Escolar, como a escolaridade dos
+pais, a posse de bens e serviços da família e o acesso à internet.
+
+\textbf{O Inse é usado para contextualizar o desempenho das escolas nas
+avaliações e exames realizados pelo Instituto Nacional de Estudos e
+Pesquisas Educacionais Anísio Teixeira (Inep).} Isso permite que o Inep
+compare o desempenho das escolas de diferentes níveis socioeconômicos e
+identifique as escolas que precisam de mais apoio.
+
+\emph{O Inse é uma ferramenta importante para a melhoria da educação no
+Brasil.} Ele ajuda a identificar as escolas que precisam de mais apoio e
+permite que o INEP desenvolva políticas públicas para melhorar a
+educação de todos os alunos, independentemente de sua origem social.
+
+\textbf{\emph{OS dados de INSE são providenciados pelo Sistema Nacional
+de Avaliação da Educação Básica (Saeb).}}
+
+\textbf{O Sistema Nacional de Avaliação da Educação Básica (SAEB) é um
+sistema de avaliação externa em larga escala, composto por um conjunto
+de instrumentos, realizado periodicamente pelo Instituto Nacional de
+Estudos e Pesquisas Educacionais Anísio Teixeira (INEP),} desde os anos
+1990, e tem por objetivos, no âmbito da educação básica: (I) produzir
+indicadores educacionais para o Brasil, suas regiões e unidades da
+Federação e, quando possível, para os municípios e as instituições
+escolares, tendo em vista a manutenção da comparabilidade dos dados,
+permitindo, assim, o incremento das séries históricas; (II) avaliar a
+qualidade, a equidade e a eficiência da educação praticada no País em
+seus diversos níveis governamentais; (III) subsidiar a elaboração, o
+monitoramento e o aprimoramento de políticas públicas em educação
+baseadas em evidências, com vistas ao desenvolvimento social e econômico
+do Brasil; (IV) desenvolver competência técnica e científica na área de
+avaliação educacional, ativando o intercâmbio entre instituições de
+ensino e pesquisa (Brasil. Inep, 2021b).
+
+\begin{verbatim}
+## Carregando pacotes exigidos: gsubfn
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: proto
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: RSQLite
+\end{verbatim}
+
+\textbf{Média de INSE das familias dos estados}
+
+Ao realizarmos a plotagem da média INSE das familias dos estados do
+Brasil em um gráfico de barras, identificamos que o estado com maior
+indice é Minas Gerais(MG) acompanhado de São Paulo(SP), e os estados com
+menor media de indice são Distrito Federal (DF) seguido de Roraima (RR)
+
+\includegraphics{Rinse_files/figure-latex/plotando grafico por estado echo:false-1.pdf}
+
+\textbf{Total de alunos por estado}
+
+Plotando nosso grafico de barras, identificamos que o estado com maior
+número de alunos é o estado de Sào Paulo (SP) seguido de Minas Gerais
+(MG).
+
+Com base nos dados, conseguimos identificar que a maior parte das
+familias com filhos em escolas estão em São Paulo, também identificamos
+uma maior demanda de professores e necessidade de investimento em edução
+nesse estado,a principio apelas pelo número de crianças
+
+\includegraphics{Rinse_files/figure-latex/plotando grafico de número de alunos-1.pdf}
+
+\textbf{Resumo estatistico do estado de SP e MG}
+
+São Paulo
+
+\begin{verbatim}
+##    MEDIA_INSE   
+##  Min.   :0.000  
+##  1st Qu.:0.000  
+##  Median :5.080  
+##  Mean   :3.131  
+##  3rd Qu.:5.310  
+##  Max.   :6.040
+\end{verbatim}
+
+Minas Gerais
+
+\begin{verbatim}
+##    MEDIA_INSE   
+##  Min.   :0.000  
+##  1st Qu.:0.000  
+##  Median :4.610  
+##  Mean   :3.076  
+##  3rd Qu.:5.030  
+##  Max.   :6.340
+\end{verbatim}
+
+\end{document}

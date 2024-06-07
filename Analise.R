@@ -111,21 +111,22 @@ theme_minimal()
 
 
 #obtendo dataframe com media INSE do estado de Sp 
-MEDIA_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+R_estat_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
 
 #Validando variavel 
-View(MEDIA_SP)
+View(R_estat)
 
 #Resumo Statistico da media INSE de SP
-summary(MEDIA_SP)
+summary(R_estat)
 
 
 #obtendo dataframe com media INSE do estado de minas
-MEDIA_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
+R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
 
 #Resumo Statistico da media INSE de SP
-summary(MEDIA_MG)
+summary(R_estat)
 
+print(R_estat)
 
 
 #Quero apenas as escolar do estado de são paulo 
@@ -135,8 +136,24 @@ summary(MEDIA_MG)
 #MG-31
 #Sp-35
 
+#Filtrando apenas dados da estado de são paulo 
+
+Dados_SP <- filter(Dados_INSE, SG_UF == "SP")
 
 
+#Plotando media de INSE por Municipios de SP 
+ggplot(Dados_SP) +
+  aes(x = NO_MUNICIPIO,y = MEDIA_INSE) +
+  geom_col(fill = "#902510")+
+  labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
+  
+  
+  
+             
+
+
+# head(Dados_SP)
 
 
 
@@ -214,3 +231,5 @@ summary(MEDIA_MG)
 # view(Dados_INSE)
 # testeok 
 # 
+
+

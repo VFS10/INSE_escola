@@ -3,6 +3,7 @@ title: "Analise INSE 2021"
 author: "Vinicius Ferreira Git-VFS10 Insta-Vinifersan89"
 date: "2024-05-23"
 output: html_document
+##output: pdf_document
 ---
 
 ```{r setup, include=FALSE}

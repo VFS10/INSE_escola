@@ -113,7 +113,7 @@ R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
 
 ```
 
-**Resumo estatistico do estado de SP e MG**
+**Resumo estatistico do INSE do estado de SP e MG**
 
 São Paulo 
 

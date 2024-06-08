@@ -14,11 +14,11 @@
 
 # Carregando Pacotes
 
-library(readr)
+#library(readr)
 library(readxl)
 library (dplyr)
-library(forcats)
-library(tidyverse)
+#library(forcats)
+#library(tidyverse)
 library(esquisse)
 library(ggplot2)
 library(sqldf)
@@ -34,7 +34,7 @@ setwd("~/Documentos/GitHub/INSE_escola")
 #Lendo base de dados e setando encond para utf8
 
 
-Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
+Dados_INSE <- read_excel("Base/INSE_2021_escolas.xlsx")#,sep =";",encoding = "utf8")
 
 #Validando Dataframe
 head(Dados_INSE)
@@ -110,24 +110,24 @@ ggplot(Dados_INSE) +
 theme_minimal()
 
 
-#obtendo dataframe com media INSE do estado de Sp 
-R_estat_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
-
-#Validando variavel 
-View(R_estat)
+# #obtendo dataframe com media INSE do estado de Sp 
+# R_estat_SP <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 35")
+# 
+# #Validando variavel 
+# View(R_estat)
+# 
+# #Resumo Statistico da media INSE de SP
+# summary(R_estat)
+# 
+# 
+# #obtendo dataframe com media INSE do estado de minas
+# R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
 
 #Resumo Statistico da media INSE de SP
-summary(R_estat)
-
-
-#obtendo dataframe com media INSE do estado de minas
-R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
-
-#Resumo Statistico da media INSE de SP
-summary(R_estat)
-
-print(R_estat)
-
+# summary(R_estat)
+# 
+# print(R_estat)
+# 
 
 #Quero apenas as escolar do estado de são paulo 
 #Dados_INSE <-  filter(Dados_INSE,CO_UF== 35) ##| MUN=="SAO BERNARDO DO CAMPO" | MUN=="SANTO ANDRE" | MUN=="SAO CAETANO DO SUL" )
@@ -140,17 +140,31 @@ print(R_estat)
 
 Dados_SP <- filter(Dados_INSE, SG_UF == "SP")
 
+esquisser(Dados_SP)
 
-#Plotando media de INSE por Municipios de SP 
+View(Dados_SP)
+
+
+
+#Plotando media de INSE por código de Municipios de SP 
 ggplot(Dados_SP) +
-  aes(x = NO_MUNICIPIO,y = MEDIA_INSE) +
-  geom_col(fill = "#902510")+
+  aes(x = CO_MUNICIPIO,y = MEDIA_INSE) +
+  geom_point(fill = "#902510")+
   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 theme_minimal()
   
+
   
-  
-             
+# #Plotando media de INSE por código de municipio de SP 
+# ggplot(Dados_SP) +
+#   aes(x = CO_MUNICIPICO,y = MEDIA_INSE) +
+#   geom_col(fill = "#902510")+
+#   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+# theme_minimal()
+# 
+# 
+
+esquisser(Dados_SP)
 
 
 # head(Dados_SP)

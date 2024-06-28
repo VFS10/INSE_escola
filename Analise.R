@@ -42,7 +42,7 @@ head(Dados_INSE)
 #Dados_INSE <- rename(Dados_INSE,"NIVELSE" = "NIVEL.SOCIOECONOMICO.DOS.ALUNOS")
 
 #Visualizando dados 
-View(Dados_INSE)
+View(Dados_INSE).
 
 #Verificando class
 #class(Dados_INSE)

@@ -40,7 +40,7 @@ Inep, 2021b).
 ```{r lendo pacotes  echo:false}
 #library(readr)
 library(readxl)
-#library (dplyr)
+library (dplyr)
 #library(forcats)
 #library(tidyverse)
 #library(esquisse)
@@ -57,7 +57,7 @@ options(scipen = 999)
 
 
 ```{r caminho da base echo:false}
-setwd("~/Documentos/GitHub/INSE_escola")
+setwd("D:/Documents/Github/INSE_escola")
 ```
 
 
@@ -98,8 +98,6 @@ ggplot(Dados_INSE) +
  y = "Total de alunos por escola ", title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10") +
  theme_minimal()
 
-
-
 ```
 
 
@@ -113,7 +111,7 @@ R_estat_MG <- sqldf("select MEDIA_INSE from Dados_INSE WHERE CO_UF = 31")
 
 ```
 
-**Resumo estatistico do INSE do estado de SP e MG**
+**Resumo estatistico da media do INSE do estado de SP e MG**
 
 São Paulo 
 
@@ -127,3 +125,67 @@ Minas Gerais
 ```{r}
 summary(R_estat_MG)
 ```
+
+
+```{r}
+Dados_SP <- filter(Dados_INSE, CO_UF == 35)
+```
+
+
+**Analisando o INSE do estado de SP**
+
+
+Plotando um grafico de **bolhas** ou também podemos chamar de **pontos**, identificamos que para os **MUNICIPIOS** do estado de **São PAULO** a  média de INSE varia de 4 a 6.  
+
+Como eu Vinicius Ferreira dos Santos sou aqui de São Bernardo do Campo - São Paulo . Iremos focar nossa Análise nessa região, sendo mais especifico ABCD **Vamos juntos !!!**
+
+
+```{r}
+
+```
+
+
+
+
+```{r plotando grafico de bolhas COM media de INSe dos municipios de são paulo }
+
+#Plotando Grafico INSE BRASIL 2021
+ggplot(Dados_SP) +
+ aes(x = CO_MUNICIPIO,y = MEDIA_INSE) +
+ geom_point(fill = "#468210") +
+ labs(x = "Municipios de SP",y ="Media INSE",title = "Media de INSE dos Municipios de São Paulo", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+
+```
+
+
+```{r Criando variavel apenas com as escolas do Municipio do ABCD }
+
+dados_ABCD <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "Diadema" | NO_MUNICIPIO == "São Bernardo do Campo" | NO_MUNICIPIO == "São Caetano do Sul")
+
+```
+
+```{r Plotando grafico de coluna com os dados do municipio do ABCD }
+
+ggplot(dados_ABCD)+
+  aes(x = NO_MUNICIPIO, y = MEDIA_INSE)+
+  geom_col(fill = "#708090")+
+  labs(x= "Municipios do ABCD", y = "Média INSE", title = "Média dos Municipios do ABCD",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
+
+```
+
+
+
+
+
+
+# ```{r}
+#  ggplot(Dados_SP) +
+#    aes(x = CO_MUNICIPIO,y = MEDIA_INSE) +
+#    geom_point(fill = "#902510")+
+#    labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+#  theme_minimal()
+# ```
+# 
+
+

@@ -29,11 +29,9 @@ options(scipen = 999)
 
 #setando pasta padrao do projeto 
 
-setwd("~/Documentos/GitHub/INSE_escola")
+setwd("D:/Documents/Github/INSE_escola")
 
 #Lendo base de dados e setando encond para utf8
-
-
 Dados_INSE <- read_excel("Base/INSE_2021_escolas.xlsx")#,sep =";",encoding = "utf8")
 
 #Validando Dataframe
@@ -44,48 +42,6 @@ head(Dados_INSE)
 #Visualizando dados 
 View(Dados_INSE).
 
-#Verificando class
-#class(Dados_INSE)
-
-#Filtrando colunas 
-#Dados_INSE <- Dados_INSE %>% dplyr::select(2,4,5)
-
-#Convertendo dados
-
-# Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
-# Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
-# Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
-# Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
-
-# Removendo a vircula do nivel socio economico das escolas para facilitar nosso tratamentodos dados 
-#Dados_INSE$NIVELSE <-  gsub ("," , "",Dados_INSE$NIVELSE)
-
-#Convertendo variavel para númerica 
-#Dados_INSE$NIVELSE  <- as.numeric(Dados_INSE$NIVELSE)
-
-
-#convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
-
-#Dados_INSE$MUN <- rownames(Dados_INSE)                                           
-
-#head(mtcars)
-
-#Dadossql <- as.data.frame(Dados_INSE)
-#str(Dadossql)
-#view(Dadossql)
-
-#sqldf("
-
-#SELECT * FROM Dadossql WHERE MUN = `DIADEMA`
-      
-#      ")
-
-
-#sqldf("
-
-#SELECT * FROM Dados_INSE WHERE MUN = `DIADEMA`
-      
-#      ")
 
 #Validando Filtro
 View(Dados_INSE)
@@ -136,38 +92,60 @@ theme_minimal()
 #MG-31
 #Sp-35
 
+
+
 #Filtrando apenas dados da estado de são paulo 
-
-Dados_SP <- filter(Dados_INSE, SG_UF == "SP")
-
-esquisser(Dados_SP)
-
-View(Dados_SP)
+Dados_SP <- filter(Dados_INSE,SG_UF == "SP")
 
 
+# Criando um grafico de bolhas para termos uma visualização do padrÃO DAS MEDIAS do municipio de sp
 
 #Plotando media de INSE por código de Municipios de SP 
 ggplot(Dados_SP) +
-  aes(x = CO_MUNICIPIO,y = MEDIA_INSE) +
+  aes(x = NO_MUNICIPIO,y = MEDIA_INSE) +
   geom_point(fill = "#902510")+
   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 theme_minimal()
   
 
-  
-# #Plotando media de INSE por código de municipio de SP 
-# ggplot(Dados_SP) +
-#   aes(x = CO_MUNICIPICO,y = MEDIA_INSE) +
-#   geom_col(fill = "#902510")+
-#   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
-# theme_minimal()
-# 
-# 
+ggplot(Dados_SP) +
+  aes(x = NO_MUNICIPIO, y = MEDIA_INSE) +
+  geom_point(stat = "summary", fun = "sum", fill = "#112446") +
+  theme_minimal()
+
+
 
 esquisser(Dados_SP)
 
 
-# head(Dados_SP)
+
+
+
+
+#FIM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -245,5 +223,50 @@ esquisser(Dados_SP)
 # view(Dados_INSE)
 # testeok 
 # 
+
+
+#Verificando class
+#class(Dados_INSE)
+
+#Filtrando colunas 
+#Dados_INSE <- Dados_INSE %>% dplyr::select(2,4,5)
+
+#Convertendo dados
+
+# Dados_INSE$COD_ESC <-  gsub ("," , "",Dados_INSE$COD_ESC)
+# Dados_INSE$COD_ESC <- as.numeric (Dados_INSE$COD_ESC)
+# Dados_INSE$NOMESC <- as.character(Dados_INSE$NOMESC)
+# Dados_INSE$MUN <- as.character (Dados_INSE$MUN)
+
+# Removendo a vircula do nivel socio economico das escolas para facilitar nosso tratamentodos dados 
+#Dados_INSE$NIVELSE <-  gsub ("," , "",Dados_INSE$NIVELSE)
+
+#Convertendo variavel para númerica 
+#Dados_INSE$NIVELSE  <- as.numeric(Dados_INSE$NIVELSE)
+
+
+#convertendo em linhas  PARA O BIBLIOTCA sqldfentender as consultassql
+
+#Dados_INSE$MUN <- rownames(Dados_INSE)                                           
+
+#head(mtcars)
+
+#Dadossql <- as.data.frame(Dados_INSE)
+#str(Dadossql)
+#view(Dadossql)
+
+#sqldf("
+
+#SELECT * FROM Dadossql WHERE MUN = `DIADEMA`
+
+#      ")
+
+
+#sqldf("
+
+#SELECT * FROM Dados_INSE WHERE MUN = `DIADEMA`
+
+#      ")
+
 
 

@@ -106,17 +106,49 @@ ggplot(Dados_SP) +
   geom_point(fill = "#902510")+
   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 theme_minimal()
-  
 
-ggplot(Dados_SP) +
+
+#esquisser(Dados_SP)
+
+
+dados_ABC <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "Diadema" | NO_MUNICIPIO == "São Bernardo do Campo" | NO_MUNICIPIO == "São Caetano do Sul")
+
+
+
+
+ggplot(dados_ABC)+
+  aes(x = NO_MUNICIPIO, y = MEDIA_INSE)+
+  geom_boxplot(fill = "#708090")+
+  labs(x= "Municipios do ABC", y = "Média INSE", title = "Média dos Municipios do ABC",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
+
+
+#View(dados_ABC)
+
+
+dados_INSE_SBC <- filter(dados_ABCD, NO_MUNICIPIO == "São Bernardo do Campo")
+
+
+
+
+
+
+
+
+
+
+summary(dados_INSE_SBC)
+
+
+
+esquisser(dados_INSE_SBC)
+
+
+
+ggplot(dados_INSE_SBC) +
   aes(x = NO_MUNICIPIO, y = MEDIA_INSE) +
-  geom_point(stat = "summary", fun = "sum", fill = "#112446") +
+  geom_boxplot(fill = "#112446") +
   theme_minimal()
-
-
-
-esquisser(Dados_SP)
-
 
 
 
@@ -188,7 +220,7 @@ esquisser(Dados_SP)
 # 
 # 
 # 
-# print(" Grafico com a representação do Número de escolas do ABCD por Municipio")
+# print(" Grafico com a representação do Número de escolas do ABC por Municipio")
 # 
 # 
 # 
@@ -196,18 +228,18 @@ esquisser(Dados_SP)
 #  aes(x = MUN) +
 #  geom_bar(fill = "#112446") +
 #  labs(x = "Municípios", y = "Número de Escolas", 
-#  title = "Número de Escola por Município ABCD") +
+#  title = "Número de Escola por Município ABC") +
 #  theme_bw()
 # library(ggplot2)
 # 
 # summary(Dados_INSE$NIVELSE)
 # 
 # 
-# print("Nível Socio Ecônomico MINIMO das escolas do ABCD é 3,93")
+# print("Nível Socio Ecônomico MINIMO das escolas do ABC é 3,93")
 # 
-# print("Nível socio ecônomico MAXIMO das escolas do ABCD é 6,51")
+# print("Nível socio ecônomico MAXIMO das escolas do ABC é 6,51")
 # 
-# print("MÉDIA do Nível socio ecônomico das escolas do ABCD é 5,22")
+# print("MÉDIA do Nível socio ecônomico das escolas do ABC é 5,22")
 # 
 # 
 # # row.names(Dados_INSE)

@@ -1,5 +1,5 @@
 ---
-title: "Analise INSE 2021"
+title: "Analise INSE 2021 por Vinicius Ferreira dos Santos"
 author: "Vinicius Ferreira Git-VFS10 Insta-Vinifersan89"
 date: "2024-05-23"
 output: html_document
@@ -62,7 +62,7 @@ setwd("D:/Documents/Github/INSE_escola")
 
 
 ```{r Lendo Base echo:false}
-Dados_INSE <- read_excel("Base/INSE_2021_municipios.xlsx")#,sep =";",encoding = "utf8")
+Dados_INSE <- read_excel("Base/INSE_2021_escolas.xlsx")#,sep =";",encoding = "utf8")
 ```
 
 **Média de INSE das familias dos estados**
@@ -137,7 +137,7 @@ Dados_SP <- filter(Dados_INSE, CO_UF == 35)
 
 Plotando um grafico de **bolhas** ou também podemos chamar de **pontos**, identificamos que para os **MUNICIPIOS** do estado de **São PAULO** a  média de INSE varia de 4 a 6.  
 
-Como eu Vinicius Ferreira dos Santos sou aqui de São Bernardo do Campo - São Paulo . Iremos focar nossa Análise nessa região, sendo mais especifico ABCD **Vamos juntos !!!**
+Como eu Vinicius Ferreira dos Santos sou aqui de São Bernardo do Campo - São Paulo . Iremos focar nossa Análise nessa região, sendo mais especifico ABC **Vamos juntos !!!**
 
 
 ```{r}
@@ -158,34 +158,49 @@ ggplot(Dados_SP) +
 ```
 
 
-```{r Criando variavel apenas com as escolas do Municipio do ABCD }
+```{r Criando variavel apenas com as escolas do Municipio do Grande ABC }
 
-dados_ABCD <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "Diadema" | NO_MUNICIPIO == "São Bernardo do Campo" | NO_MUNICIPIO == "São Caetano do Sul")
+dados_ABC <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "Diadema" | NO_MUNICIPIO == "São Bernardo do Campo" | NO_MUNICIPIO == "São Caetano do Sul")
 
 ```
 
-```{r Plotando grafico de coluna com os dados do municipio do ABCD }
 
-ggplot(dados_ABCD)+
+**Média dos Municipios do Grande ABC**
+
+Com nosso box para os municipios do Grande ABC, observamos que a cidade com maior INSE é **São Caetano do Sul**, Seguida de **São Bernardo do Campo**, e a cidade com menos Indice é **Diadema**.
+Também percebemos uma variação descrepante dos valores centrais das Cidades, também como para limite superior e inferior. 
+
+Algo interessante que podemos comentar entre **São Bernaro do Campo e São Caetano do Sul**, e que também influencia em nossa análise é a  diferença do número de habitantes entre as duas cidades, São Bernardo do Campo com seus 810 729 habitantes e São Caetano do Sul 161.957 habitantes (Dados extraidos do Wikipédia).
+
+
+```{r Plotando grafico de coluna com os dados do municipio do Grande ABC }
+
+ggplot(dados_ABC)+
   aes(x = NO_MUNICIPIO, y = MEDIA_INSE)+
-  geom_col(fill = "#708090")+
-  labs(x= "Municipios do ABCD", y = "Média INSE", title = "Média dos Municipios do ABCD",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
-theme_minimal()
+  geom_boxplot(fill = "#701090")+
+  labs(x= "Municipios do Grande ABC", y = "Média INSE", title = "Média dos Municipios do Grande ABC",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+
+```
+
+***Municipios de São Bernardo do Campo***
+
+Como estou localizado no municipio de São Bernardo do Campo, irei focar no mesmo , nada impede de no futuro verificarmos também as demais cidades ! 
+
+Vamos dar continuidade encontrando as escolas de São Bernardo do Campo que estão com media de INSE abaixo do limite inferior, estas escolas/familias necessitam de uma atenção em especial !
+
+
+```{r Filtrando dados Municipio de SBC e Media inferior a 5 }
+dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 5)
 
 ```
 
 
+```{r }
+ggplot(dados_SBC) +
+  aes(x = MEDIA_INSE, y = NO_ESCOLA) +
+  geom_col(fill = "#461210") +
+  labs(y = "Escola", x = "Media INSE", title = "Escolas em SBC  com Média inferior a 5",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+```
 
-
-
-
-# ```{r}
-#  ggplot(Dados_SP) +
-#    aes(x = CO_MUNICIPIO,y = MEDIA_INSE) +
-#    geom_point(fill = "#902510")+
-#    labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
-#  theme_minimal()
-# ```
-# 
 
 

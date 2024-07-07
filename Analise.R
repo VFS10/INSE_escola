@@ -106,16 +106,26 @@ ggplot(Dados_SP) +
   geom_point(fill = "#902510")+
   labs(x = "Municipios de SP",y ="Media INSE",title = "Número de alunos por estado", subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 theme_minimal()
-  
-
-ggplot(Dados_SP) +
-  aes(x = NO_MUNICIPIO, y = MEDIA_INSE) +
-  geom_point(stat = "summary", fun = "sum", fill = "#112446") +
-  theme_minimal()
 
 
+#esquisser(Dados_SP)
 
-esquisser(Dados_SP)
+
+dados_ABCD <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "Diadema" | NO_MUNICIPIO == "São Bernardo do Campo" | NO_MUNICIPIO == "São Caetano do Sul")
+
+ggplot(dados_ABCD)+
+  aes(x = NO_MUNICIPIO, y = MEDIA_INSE)+
+  geom_col(fill = "#708090")+
+  labs(x= "Municipios do ABCD", y = "Média INSE", title = "Média dos Municipios do ABCD",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+theme_minimal()
+
+
+#View(dados_ABCD)
+
+
+
+
+
 
 
 

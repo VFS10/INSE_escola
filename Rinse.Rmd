@@ -167,10 +167,17 @@ dados_ABC <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "
 
 **Média dos Municipios do Grande ABC**
 
+<<<<<<< HEAD
 Com nosso box para os municipios do Grande ABC, observamos que a cidade com maior INSE é **São Caetano do Sul**, Seguida de **São Bernardo do Campo**, e a cidade com menos Indice é **Diadema**.
 Também percebemos uma variação descrepante dos valores centrais das Cidades, também como para limite superior e inferior. 
 
 Algo interessante que podemos comentar entre **São Bernaro do Campo e São Caetano do Sul**, e que também influencia em nossa análise é a  diferença do número de habitantes entre as duas cidades, São Bernardo do Campo com seus 810 729 habitantes e São Caetano do Sul 161.957 habitantes (Dados extraidos do Wikipédia).
+=======
+Plotando grafico de Colunas para o municipio do Grande ABC, analisamos que a cidade com maior INSE é **São Bernardo do Campo**, Seguida de **São Caetano do Sul**, e a cidade com menos Indice é **Diadema**.
+Algo interesante que podemos comentar entre **São bernaro do campo e São Caetano do Sul**, e que também influencia em nossa análise é a gritante diferença do número de habitantes entre as duas cidades, São Bernardo do Campo com seus 810 729 habitantes e São Caetano do Sul 161.957 habitantes (Dados extraidos do Wikipédia).
+
+
+>>>>>>> cd3bb34fc9658537fb6566b56326ccb038797bd7
 
 
 ```{r Plotando grafico de coluna com os dados do municipio do Grande ABC }
@@ -189,18 +196,14 @@ Como estou localizado no municipio de São Bernardo do Campo, irei focar no mesm
 Vamos dar continuidade encontrando as escolas de São Bernardo do Campo que estão com media de INSE abaixo do limite inferior, estas escolas/familias necessitam de uma atenção em especial !
 
 
-```{r Filtrando dados Municipio de SBC e Media inferior a 5 }
-dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 5)
-
+```{r Filtrando dados Municipio de SBC e Media inferior a 4,9 }
+dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 4.9)
 ```
-
 
 ```{r }
 ggplot(dados_SBC) +
   aes(x = MEDIA_INSE, y = NO_ESCOLA) +
   geom_col(fill = "#461210") +
-  labs(y = "Escola", x = "Media INSE", title = "Escolas em SBC  com Média inferior a 5",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+  labs(y = "Escola", x = "Media INSE", title = "Escolas em SBC  com Média inferior a 4.9",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 ```
-
-
 

@@ -151,6 +151,14 @@ ggplot(dados_INSE_SBC) +
   theme_minimal()
 
 
+#Filtrando dados  - Municipio de SBC e Media INSE inferior a 5 
+dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 5)
+
+
+ggplot(dados_SBC) +
+  aes(x = MEDIA_INSE, y = NO_ESCOLA) +
+  geom_col(fill = "#461210") +
+  labs(y = "Escola", x = "Media INSE", title = "Escolas em SBC  com Média inferior a 5",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 
 
 

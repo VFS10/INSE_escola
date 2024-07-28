@@ -164,20 +164,15 @@ dados_ABC <- filter(Dados_SP, NO_MUNICIPIO == "Santo André" | NO_MUNICIPIO == "
 
 ```
 
-
 **Média dos Municipios do Grande ABC**
 
-<<<<<<< HEAD
 Com nosso box para os municipios do Grande ABC, observamos que a cidade com maior INSE é **São Caetano do Sul**, Seguida de **São Bernardo do Campo**, e a cidade com menos Indice é **Diadema**.
 Também percebemos uma variação descrepante dos valores centrais das Cidades, também como para limite superior e inferior. 
 
 Algo interessante que podemos comentar entre **São Bernaro do Campo e São Caetano do Sul**, e que também influencia em nossa análise é a  diferença do número de habitantes entre as duas cidades, São Bernardo do Campo com seus 810 729 habitantes e São Caetano do Sul 161.957 habitantes (Dados extraidos do Wikipédia).
-=======
+
 Plotando grafico de Colunas para o municipio do Grande ABC, analisamos que a cidade com maior INSE é **São Bernardo do Campo**, Seguida de **São Caetano do Sul**, e a cidade com menos Indice é **Diadema**.
 Algo interesante que podemos comentar entre **São bernaro do campo e São Caetano do Sul**, e que também influencia em nossa análise é a gritante diferença do número de habitantes entre as duas cidades, São Bernardo do Campo com seus 810 729 habitantes e São Caetano do Sul 161.957 habitantes (Dados extraidos do Wikipédia).
-
-
->>>>>>> cd3bb34fc9658537fb6566b56326ccb038797bd7
 
 
 ```{r Plotando grafico de coluna com os dados do municipio do Grande ABC }
@@ -189,21 +184,44 @@ ggplot(dados_ABC)+
 
 ```
 
-***Municipios de São Bernardo do Campo***
+***Escolas do Municipio de São Bernardo do Campo***
 
 Como estou localizado no municipio de São Bernardo do Campo, irei focar no mesmo , nada impede de no futuro verificarmos também as demais cidades ! 
 
-Vamos dar continuidade encontrando as escolas de São Bernardo do Campo que estão com media de INSE abaixo do limite inferior, estas escolas/familias necessitam de uma atenção em especial !
+Em uma breve visualização identificamos que as escolas de SBC, estão entre 4,5 e 6 no Nivel Ecônomico Brasileiro,a grande maioria se encontra a Baixo de 6.
+Não irei apresentar o nome dessas escolas diretamente nessa visualização, devido a quantidade os nomes não ficariam legiveis no gráfico.
 
+
+```{r Filtrando dados  - Municipio de SBC}
+
+dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo")
+```
+
+
+```{r INSe de SBC}
+
+ggplot(dados_SBC) +
+  aes(x = ID_ESCOLA, y = MEDIA_INSE) +
+  geom_area(fill = "#113521") +
+  theme_minimal()+
+  labs(x= "Cód Escolas SBC", y = "Média INSE", title = "Nivel Econômico das Familia de SBC",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+
+
+```
+
+
+Vamos dar continuidade encontrando as Escolas/Familias de São Bernardo do Campo que estão abaixo do limite SocioEconômico inferior, estas escolas/familias necessitam de uma atenção/estudo de caso em especial !
 
 ```{r Filtrando dados Municipio de SBC e Media inferior a 4,9 }
-dados_SBC <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 4.9)
+dados_SBC5 <- filter(Dados_SP, NO_MUNICIPIO == "São Bernardo do Campo", MEDIA_INSE <= 4.9)
 ```
 
 ```{r }
-ggplot(dados_SBC) +
+ggplot(dados_SBC5) +
   aes(x = MEDIA_INSE, y = NO_ESCOLA) +
   geom_col(fill = "#461210") +
-  labs(y = "Escola", x = "Media INSE", title = "Escolas em SBC  com Média inferior a 4.9",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
+  labs(y = "Escola", x = "Media INSE", title = "Nivel Econômico das Familia de SBC com Média inferior a 4.9",subtitle = "Insta : @Vinifersan89 - Git : https://github.com/VFS10")
 ```
 
+OBS: este é um breve portfolio do meu aprendizado e evolução no R.
+Podemos analisar mais a fundo essas informações dependendo da necessidade do negócio.
